@@ -1,0 +1,22 @@
+{
+    "name": "phpexcel/phpexcel",
+    "description": "PHPExcel integration plugin for OctoberCMS",
+    "homepage": "http://phpexcel.codeplex.com",
+    "keywords": ["october", "tiipiik", "PHPExcel"],
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Tiipiik",
+            "email": "yohann.decharraud@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">5.2.0",
+        "phpoffice/phpexcel": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "PHPExcel": "Classes"
+        }
+    }
+}

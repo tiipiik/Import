@@ -1,0 +1,20 @@
+tabs:
+    fields:
+      title:
+        tab: General
+        label: Title
+        placeholder: Title for this import set.
+
+      file:
+        context: [create,update]
+        tab: General
+        label: File to import
+        type: fileupload
+        commentAbove: The CSV file.
+        options:
+          mode: file
+
+      test:
+        context: update
+        tab: Manage
+        label: Test

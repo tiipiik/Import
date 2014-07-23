@@ -1,0 +1,23 @@
+# Record name
+name: Import
+
+# Model Form Field configuration
+form: @/plugins/tiipiik/import/models/import/fields.yaml
+
+# Model Class name
+modelClass: Tiipiik\Import\Models\Import
+
+# Default redirect location
+defaultRedirect: tiipiik/import/imports
+
+# Create page
+create:
+    title: Create Imports
+    redirect: tiipiik/import/imports/update/:id
+    redirectClose: tiipiik/import/imports
+
+# Update page
+update:
+    title: Edit Imports
+    redirect: tiipiik/import/imports
+    redirectClose: tiipiik/import/imports
