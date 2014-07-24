@@ -23,19 +23,18 @@ class Import extends Model
     ];
     
     public $attachOne = [
-        'file' => ['System\Models\File']
+        'imported_file' => ['System\Models\File']
     ];
     
     public $headers = null;
     
     public function afterFetch()
     {
-        $file = $this->file->file_name;
+        $file = $this->imported_file ? $this->imported_file->file_name : null;
     }
     
     public function getHeadersOptions()
     {
         return [];
     }
-    
 }

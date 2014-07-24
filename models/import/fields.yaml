@@ -5,7 +5,7 @@ tabs:
         label: Title
         placeholder: Title for this import set.
 
-      file:
+      imported_file:
         context: [create,update]
         tab: General
         label: File to import
