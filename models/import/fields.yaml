@@ -14,7 +14,11 @@ tabs:
         options:
           mode: file
 
-      test:
+      headers:
         context: update
         tab: Manage
-        label: Test
+        label: File headers
+        type: dropdown
+        options: getHeadersOptions
+        #type: partial
+        #path: @/plugins/tiipiik/import/models/import/_parse_file.htm

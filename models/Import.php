@@ -3,6 +3,8 @@
 use App;
 use Model;
 use Flash;
+use PHPExcel;
+use DataImport;
 use October\Rain\Support\ValidationException;
 
 /**
@@ -18,11 +20,24 @@ class Import extends Model
     
     public $rules = [
         'title' => 'required|min:3',
-        'file' => 'required|mimes:csv',
     ];
     
     public $attachOne = [
         'file' => ['System\Models\File']
     ];
+    
+    public $headers = null;
+    
+    public function afterFetch()
+    {
+        $file = $this->file->file_name;
+    }
+    
+    public function getHeadersOptions()
+    {
+        $id = $this->file->file_name;
+        die($id);
+        return [];
+    }
     
 }
