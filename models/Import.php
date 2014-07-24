@@ -35,8 +35,6 @@ class Import extends Model
     
     public function getHeadersOptions()
     {
-        $id = $this->file->file_name;
-        die($id);
         return [];
     }
     
