@@ -3,8 +3,7 @@
 use App;
 use Model;
 use Flash;
-use PHPExcel;
-use DataImport;
+use Tiipiik\Import\Classes\DataImport;
 use October\Rain\Support\ValidationException;
 
 /**
@@ -28,13 +27,28 @@ class Import extends Model
     
     public $headers = null;
     
+    /*
     public function afterFetch()
     {
         $file = $this->imported_file ? $this->imported_file->file_name : null;
     }
+    */
     
     public function getHeadersOptions()
     {
-        return [];
+        $file = null;
+        $aDatas = [];
+        if ($this->imported_file)
+        {
+            $file = $this->imported_file->getPath();  
+            $fileType = $this->imported_file->content_type; 
+        }
+        
+        if ($file != null && is_file('../'.$file))
+        {
+            $headers = DataImport::getFileHeaders('../'.$file, $fileType);
+        }
+        
+        return $aDatas;
     }
 }

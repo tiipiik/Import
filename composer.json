@@ -1,6 +1,6 @@
 {
     "name": "phpexcel/phpexcel",
-    "description": "PHPExcel integration plugin for OctoberCMS",
+    "description": "PHPExcel and XMLParser integration plugin for OctoberCMS",
     "homepage": "http://phpexcel.codeplex.com",
     "keywords": ["october", "tiipiik", "PHPExcel"],
     "license": "GNU",
