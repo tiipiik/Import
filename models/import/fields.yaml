@@ -1,24 +1,79 @@
 tabs:
     fields:
       title:
-        tab: General
+        tab: File
         label: Title
         placeholder: Title for this import set.
-
+        commentAbove: You need to first save this Import with the file you want to import, and edit this Import to access to file datas.
+        
+      temp:
+        tab: File
+        label: From field
+        span: left
+        type: dropdown
+        options: getHeadersOptions
+        
+      temp_list:
+        tab: File
+        label: To database
+        span: right
+        type: dropdown
+        options: getDBOptions
+    
+      rows_commands:
+        tab: File
+        type: partial
+        path: @/plugins/tiipiik/import/models/import/_rows_commands.htm
+        
       imported_file:
-        context: [create,update]
-        tab: General
+        tab: File
         label: File to import
         type: fileupload
         commentAbove: The CSV file.
         options:
           mode: file
+      
+      import_posts:
+        context: [create,update]
+        tab: WP Import
+        label: Import posts
+        type: checkbox
+      
+      import_authors:
+        context: [create,update]
+        tab: WP Import
+        label: Import authors
+        type: checkbox
+      
+      import_comments:
+        context: [create,update]
+        tab: WP Import
+        label: Import comments
+        type: checkbox
+      
+      import_tags:
+        context: [create,update]
+        tab: WP Import
+        label: Import tags
+        type: checkbox
+      
+      import_categories:
+        context: [create,update]
+        tab: WP Import
+        label: Import categories
+        type: checkbox
 
-      headers:
-        context: update
-        tab: Manage
-        label: File headers
-        type: dropdown
-        options: getHeadersOptions
+      xml_file:
+        context: [create,update]
+        tab: Other XML Import
+        placeholder: Not yet implemented
+        
+      csv_file:
+        context: [create,update]
+        tab: Csv Import
+        placeholder: Not yet implemented
+        #label: File headers
+        #type: dropdown
+        #options: getHeadersOptions
         #type: partial
         #path: @/plugins/tiipiik/import/models/import/_parse_file.htm

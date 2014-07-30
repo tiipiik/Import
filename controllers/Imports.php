@@ -22,4 +22,14 @@ class Imports extends Controller
         BackendMenu::setContext('October.System', 'system', 'settings');
     }
     
+    /*
+     * Add a row populated with with datas
+     *
+     */
+    public function onAddRow()
+    {
+        
+        return true;
+    }
+    
 }

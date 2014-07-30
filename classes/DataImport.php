@@ -2,6 +2,7 @@
 
 use PHPExcel;
 use Exception;
+use SimpleXMLElement;
 use PHPExcel_IOFactory;
 
 /*
@@ -10,6 +11,34 @@ use PHPExcel_IOFactory;
 
 class DataImport
 {
+
+    /*
+     * Based on :
+     * http://php.net/manual/fr/simplexmlelement.children.php
+     * coldshine1 at rambler dot ru
+     */
+    public static function ParseXML($node, &$nodes = [], $only_child = true)
+    {
+        //Current node name
+        $node_name = $node->getName();
+        $nodes[] = $node_name;
+        
+        //Let's count children
+        $only_child = true;
+        if($node->count() > 1 ) $only_child = false;
+
+        //Get children
+        $count = 0;
+        foreach ($node->children() as $child_name=>$child_node) {
+            if(!$only_child) //If there are siblings then we'll add node to the end of the array
+                self::ParseXML($child_node, $nodes[$node_name], $only_child);
+            else
+                self::ParseXML($child_node, $nodes[$child_name], $only_child);
+            $count++;
+        }
+        return $nodes;
+    }
+    
     /*
      * Get file headers to display in dropdown
      *
@@ -22,10 +51,23 @@ class DataImport
         {
             $xmlstr = file_get_contents($file);
             
-            $xml = simplexml_load_file($file, 'SimpleXMLElement', LIBXML_NOCDATA);
+            $xml = simplexml_load_string($xmlstr, 'SimpleXMLElement', LIBXML_NOCDATA);
+            $namespaces = $xml->getNameSpaces(true);
             if(!$xml)
                 throw new Exception('Failed To Parse XML');
-            $namespaces = $xml->getNameSpaces(true);
+            
+            //$sxe = new SimpleXMLElement($xmlstr);
+            
+            /*
+            $nodes = self::ParseXML($sxe);
+            echo '<pre>';
+                var_dump($nodes);
+            echo 'Size : '.sizeof($nodes);
+            foreach ($nodes as $key=>$node)
+            {
+                echo $key.'<br>';
+            }
+            */
             
             //  Where is this file from ?
             //$is_wp = $xml->xpath('//channel/wp:wxr_version');
@@ -35,6 +77,15 @@ class DataImport
                 if (strpos($generator[0], 'wordpress') !== false)
                 {
                     // this is a WP file, could check version to be more retro compat but...
+                    
+                    $list = get_filtered_wp_xml($file);
+                    echo '<pre>';
+                        var_dump($list);
+                    
+                    /*
+                    * This is for parsing file, here we just want to pick nodes
+                    */
+                    /*
                     foreach($xml->channel->item as $item)
                     {
                         //$title = $xml->xpath('//title');
@@ -53,6 +104,7 @@ class DataImport
                         }
                         // comments
                     }
+                    */
                 }
             }
             
